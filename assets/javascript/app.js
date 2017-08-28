@@ -15,23 +15,23 @@ var tName="";
 var destination="";
 var firstTrainTime="";
 var frequency="";
-var nextArrival="";
-var minAway="";
 
  //Grab user input
 $("input[type='submit']").on("click", function(event){
   event.preventDefault();
   tName=$("#input-name").val().trim();
   destination=$("#input-destination").val().trim();
-  firstTrainTime=$("#input-1stTrainTime").val().trim();
+  firstTrainTime=moment($("#input-1stTrainTime").val().trim(), "HH:mm").format("X");
   frequency=$("#input-Frequency").val().trim();
 
-  database.ref().push({
-  tName: tName,
-  destination: destination,
-  firstTrainTime: firstTrainTime,
-  frequency: frequency
-  });
+  var newTrain = {
+    tName: tName,
+    destination: destination,
+    firstTrainTime: firstTrainTime,
+    frequency: frequency
+  }
+
+  database.ref().push(newTrain);
 
   //Clear all the text-boxes
   $("#input-name").val("");
@@ -44,7 +44,12 @@ database.ref().on("child_added", function(childSnapShot) {
   var tName = childSnapShot.val().tName;
   var destination = childSnapShot.val().destination;
   var frequency = childSnapShot.val().frequency;
-  var nextArrival = childSnapShot.val().firstTrainTime;
+  var firstTrainTime = childSnapShot.val().firstTrainTime;
+
+  var timeDifference = moment().diff(moment.unix(firstTrainTime), "m");
+  var remainder = timeDifference % frequency;
+  var minAway = frequency - remainder;
+  var nextArrival = moment().add(minAway, "m").format("HH:mm");
 
   $("#schedule > tbody").prepend("<tr><td>" + tName +
   	"</td><td>" + destination + "</td><td>" + frequency +
