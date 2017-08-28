@@ -32,13 +32,24 @@ $("input[type='submit']").on("click", function(event){
   firstTrainTime: firstTrainTime,
   frequency: frequency
   });
+
+  //Clear all the text-boxes
+  $("#input-name").val("");
+  $("#input-destination").val("");
+  $("#input-1stTrainTime").val("");
+  $("#input-Frequency").val("");
 });
 
 database.ref().on("child_added", function(childSnapShot) {
-  $("#tName").html(childSnapShot.val().tName);
-  $("#destination").html(childSnapShot.val().destination);
-  $("#frequency").html(childSnapShot.val().frequency);
-  $("#nextArrival").html(childSnapShot.val().firstTrainTime);
+  var tName = childSnapShot.val().tName;
+  var destination = childSnapShot.val().destination;
+  var frequency = childSnapShot.val().frequency;
+  var nextArrival = childSnapShot.val().firstTrainTime;
+
+  $("#schedule > tbody").prepend("<tr><td>" + tName +
+  	"</td><td>" + destination + "</td><td>" + frequency +
+  	"</td><td>" + nextArrival + "</td><td>" + minAway +
+  	"</td></tr>");
   }, function(errorObject) {
     console.log("The read failed: " + errorObject.code);
 });
