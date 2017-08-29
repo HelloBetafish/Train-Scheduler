@@ -5,25 +5,25 @@
   <meta charset="utf-8">
   <title>Train Scheduler</title>
   <!-- Link to Bootstrap CDN -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!--Link to cCSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <!--Link to CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
   <div class="container">
     <div class="jumbotron text-center">
-      <h1>Anytime is Train Time</h1>
-      <p>Choo Choo. Chee Chee.</p>
+      <h1>The Train Scheduler</h1>
+      <p>Enter the train information below to see the estimated arrival of the next train.</p>
     </div>
 
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Current Train Schedule</h3>
+    <div class="card">
+      <div class="card-header bg-secondary">
+        <h3 class="card-title text-white">Current Train Schedule</h3>
       </div>
-      <div class="panel-body">
+      <div class="card-body">
         <table class="table" id="schedule">
-          <thead>
+          <thead class="bg-success text-white">
             <tr>
               <th>Train Name</th>
               <th>Destination</th>
@@ -33,23 +33,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><span id="tName"></span></td>
-              <td><span id="destination"></span></td>
-              <td><span id="frequency"></span></td>
-              <td><span id="nextArrival"></span></td>
-              <td><span id="minAway"></span></td>
-            </tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Add Train</h3>
+    <div class="card">
+      <div class="card-header bg-secondary">
+        <h3 class="card-title text-white">Add Train</h3>
       </div>
-      <div class="panel-body">
+      <div class="card-body bg-light">
         <form>
           <div class="form-group">
             <label for="input-name">Train Name</label>

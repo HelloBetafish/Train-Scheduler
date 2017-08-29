@@ -1,4 +1,17 @@
 .jumbotron{
-  background-color: forestgreen;
+/*Made by Caveman on https://www.toptal.com/designers/subtlepatterns/pool-table/*/
+  background-image:url("../images/pool_table.png");
   color:white;
+}
+
+body{
+  background-image:url("http://media-cdn.timesfreepress.com/img/photos/2014/05/03/0504_WEB_a_Light_Rail_t800_hd4cd3bddf2987db2352daa78d1a044c9627d3951.JPG");
+}
+
+.card{
+  margin: 50px 0px;
+}
+
+input[type=text]:focus{
+  background-color:#cef296;
 }
