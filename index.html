@@ -4,8 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title>Train Scheduler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Link to Bootstrap CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <!-- Link to Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
   <!--Link to CSS-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
@@ -17,6 +20,8 @@
       <p>Enter the train information below to see the estimated arrival of the next train.</p>
     </div>
 
+	<div class="row">
+	<div class="col col-md-9">
     <div class="card">
       <div class="card-header bg-secondary">
         <h3 class="card-title text-white">Current Train Schedule</h3>
@@ -37,7 +42,9 @@
         </table>
       </div>
     </div>
-
+	</div>
+	<div class="clearfix hidden-md-up"></div>
+	<div class="col col-md-3">
     <div class="card">
       <div class="card-header bg-secondary">
         <h3 class="card-title text-white">Add Train</h3>
@@ -65,7 +72,13 @@
       </div>
       </div>
     </div>
+
+	</div>
+	</div>
+
   </div>
+
+
   <!--Firebase, Javascript and JQuery tags-->
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

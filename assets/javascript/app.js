@@ -52,10 +52,10 @@ database.ref().on("child_added", function(childSnapShot) {
   var nextArrival = moment().add(minAway, "m").format("HH:mm");
   // Grab Child key
   var childKey = childSnapShot.key;
-  var deleteBtn = $("<button class='delete'>").text("Delete").attr("data-index", childKey);
+  var deleteBtn = $("<button class='delete btn-warning'>").text("Delete").attr("data-index", childKey);
 
   $("#schedule > tbody").prepend(deleteBtn);
-  $("#schedule > tbody").prepend("<tr id='" + childKey + "'><td>" + tName +
+  $("#schedule > tbody").prepend("<tr><td>" + tName +
   	"</td><td>" + destination + "</td><td>" + frequency +
   	"</td><td>" + nextArrival + "</td><td>" + minAway +
   	"</td></tr>");
