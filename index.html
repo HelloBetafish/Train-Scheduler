@@ -14,14 +14,15 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-fluid">
     <div class="jumbotron text-center">
       <h1>The Train Scheduler</h1>
       <p>Enter the train information below to see the estimated arrival of the next train.</p>
+      <p>Number of current users on site: <span id="watchers"></span></p>
     </div>
 
 	<div class="row">
-	  <div class="col col-md-9">
+	  <div class="col col-md-8">
         <div class="card">
           <div class="card-header bg-secondary">
             <h3 class="card-title text-white">Current Train Schedule</h3>
@@ -44,7 +45,7 @@
         </div>
 	  </div>
 	  <div class="clearfix hidden-md-up"></div>
-	  <div class="col col-md-3">
+	  <div class="col col-md-4">
         <div class="card">
           <div class="card-header bg-secondary">
             <h3 class="card-title text-white">Add Train</h3>

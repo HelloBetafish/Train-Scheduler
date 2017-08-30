@@ -16,6 +16,8 @@ var tName="";
 var destination="";
 var firstTrainTime="";
 var frequency="";
+// Created special folder to store train info
+var trainsRef = database.ref("/trains");
 
  //Grab user input on Submit button
 $("input[type='submit']").on("click", function(event){
@@ -33,8 +35,8 @@ $("input[type='submit']").on("click", function(event){
     frequency: frequency
   }
 
-  // Push object to Firebase
-  database.ref().push(newTrain);
+  // Push object to trains folder in Firebase
+  trainsRef.push(newTrain);
 
   //Clear all the text-boxes
   $("#input-name").val("");
@@ -44,7 +46,7 @@ $("input[type='submit']").on("click", function(event){
 });
 
 // Function for when new object added to database
-database.ref().on("child_added", function(childSnapShot) {
+trainsRef.on("child_added", function(childSnapShot) {
   var tName = childSnapShot.val().tName;
   var destination = childSnapShot.val().destination;
   var frequency = childSnapShot.val().frequency;
@@ -58,6 +60,7 @@ database.ref().on("child_added", function(childSnapShot) {
 
   // Grab Child key
   var childKey = childSnapShot.key;
+
 
   // Create Delete button
   var deleteBtn = $("<button class='delete btn-warning'>").text("Delete").attr("data-index", childKey);
@@ -74,7 +77,7 @@ database.ref().on("child_added", function(childSnapShot) {
 //Function to remove object from database when Delete button clicked
 $(document.body).on("click", "button.delete", function(){
   var currentKey = $(this).attr("data-index");
-  database.ref().child(currentKey).remove()
+  trainsRef.child(currentKey).remove()
   .then(function() {
     console.log("Remove succeeded.")
   })
@@ -84,4 +87,30 @@ $(document.body).on("click", "button.delete", function(){
   // Update html
   $(this).prev("tr").remove();
   $(this).remove();
+});
+
+// Detecting Presence
+// Created folder to store connections
+var connectionsRef = database.ref("/connections");
+// '.info/connected' is a special location provided by Firebase that is updated every time
+// the client's connection state changes.
+// '.info/connected' is a boolean value, true if the client is connected and false if they are not.
+var connectedRef = database.ref(".info/connected");
+
+// When the client's connection state changes...
+connectedRef.on("value", function(snap) {
+  // If they are connected..
+  if (snap.val()) {
+  	// Add user to the connections list.
+    var con = connectionsRef.push(true);
+    // Remove user from the connection list when they disconnect.
+    con.onDisconnect().remove();
+  }
+});
+
+// When first loaded or when the connections list changes...
+connectionsRef.on("value", function(snap) {
+  // Display the viewer count in the html.
+  // The number of online users is the number of children in the connections list.
+  $("#watchers").html(snap.numChildren());
 });
