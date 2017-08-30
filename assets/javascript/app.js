@@ -1,13 +1,14 @@
 // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyCD3lucnWA4ixjVTGW__27r8L2VHIwGWEA",
-    authDomain: "train-scheduler-28563.firebaseapp.com",
-    databaseURL: "https://train-scheduler-28563.firebaseio.com",
-    projectId: "train-scheduler-28563",
-    storageBucket: "",
-    messagingSenderId: "509739508633"
-  };
-  firebase.initializeApp(config);
+var config = {
+  apiKey: "AIzaSyCD3lucnWA4ixjVTGW__27r8L2VHIwGWEA",
+  authDomain: "train-scheduler-28563.firebaseapp.com",
+  databaseURL: "https://train-scheduler-28563.firebaseio.com",
+  projectId: "train-scheduler-28563",
+  storageBucket: "",
+  messagingSenderId: "509739508633"
+};
+
+firebase.initializeApp(config);
 
  // Initialize variables
 var database=firebase.database();
@@ -16,7 +17,7 @@ var destination="";
 var firstTrainTime="";
 var frequency="";
 
- //Grab user input
+ //Grab user input on Submit button
 $("input[type='submit']").on("click", function(event){
   event.preventDefault();
   tName=$("#input-name").val().trim();
@@ -24,6 +25,7 @@ $("input[type='submit']").on("click", function(event){
   firstTrainTime=moment($("#input-1stTrainTime").val().trim(), "HH:mm").format("X");
   frequency=$("#input-Frequency").val().trim();
 
+  // Store input in new object
   var newTrain = {
     tName: tName,
     destination: destination,
@@ -31,6 +33,7 @@ $("input[type='submit']").on("click", function(event){
     frequency: frequency
   }
 
+  // Push object to Firebase
   database.ref().push(newTrain);
 
   //Clear all the text-boxes
@@ -40,20 +43,25 @@ $("input[type='submit']").on("click", function(event){
   $("#input-Frequency").val("");
 });
 
+// Function for when new object added to database
 database.ref().on("child_added", function(childSnapShot) {
   var tName = childSnapShot.val().tName;
   var destination = childSnapShot.val().destination;
   var frequency = childSnapShot.val().frequency;
   var firstTrainTime = childSnapShot.val().firstTrainTime;
 
+  // Calculate next arrival and minutes away
   var timeDifference = moment().diff(moment.unix(firstTrainTime), "m");
   var remainder = timeDifference % frequency;
   var minAway = frequency - remainder;
   var nextArrival = moment().add(minAway, "m").format("HH:mm");
+
   // Grab Child key
   var childKey = childSnapShot.key;
-  var deleteBtn = $("<button class='delete btn-warning'>").text("Delete").attr("data-index", childKey);
 
+  // Create Delete button
+  var deleteBtn = $("<button class='delete btn-warning'>").text("Delete").attr("data-index", childKey);
+  // Update HTML
   $("#schedule > tbody").prepend(deleteBtn);
   $("#schedule > tbody").prepend("<tr><td>" + tName +
   	"</td><td>" + destination + "</td><td>" + frequency +
@@ -63,7 +71,7 @@ database.ref().on("child_added", function(childSnapShot) {
     console.log("The read failed: " + errorObject.code);
 });
 
-//Function to remove buttons from array when delete button clicked
+//Function to remove object from database when Delete button clicked
 $(document.body).on("click", "button.delete", function(){
   var currentKey = $(this).attr("data-index");
   database.ref().child(currentKey).remove()
@@ -73,6 +81,7 @@ $(document.body).on("click", "button.delete", function(){
   .catch(function(error) {
     console.log("Remove failed: " + error.message)
   });
+  // Update html
   $(this).prev("tr").remove();
   $(this).remove();
 });

@@ -21,64 +21,59 @@
     </div>
 
 	<div class="row">
-	<div class="col col-md-9">
-    <div class="card">
-      <div class="card-header bg-secondary">
-        <h3 class="card-title text-white">Current Train Schedule</h3>
+	  <div class="col col-md-9">
+        <div class="card">
+          <div class="card-header bg-secondary">
+            <h3 class="card-title text-white">Current Train Schedule</h3>
+          </div>
+          <div class="card-body">
+            <table class="table" id="schedule">
+              <thead class="bg-success text-white">
+                <tr>
+                  <th>Train Name</th>
+                  <th>Destination</th>
+                  <th>Frequency (min)</th>
+                  <th>Next Arrival</th>
+                  <th>Minutes Away</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+	  </div>
+	  <div class="clearfix hidden-md-up"></div>
+	  <div class="col col-md-3">
+        <div class="card">
+          <div class="card-header bg-secondary">
+            <h3 class="card-title text-white">Add Train</h3>
+          </div>
+          <div class="card-body bg-light">
+            <form>
+              <div class="form-group">
+                <label for="input-name">Train Name</label>
+                <input type="text" class="form-control" id="input-name">
+              </div>
+              <div class="form-group">
+                <label for="input-destination">Destination</label>
+                <input type="text" class="form-control" id="input-destination">
+              </div>
+              <div class="form-group">
+                <label for="input-1stTrainTime">First Train Time (HH:mm - military time)</label>
+                <input type="text" class="form-control" id="input-1stTrainTime">
+              </div>
+              <div class="form-group">
+                <label for="input-Frequency">Frequency (min)</label>
+                <input type="text" class="form-control" id="input-Frequency">
+              </div>
+              <input id="submit" type="submit" value="Submit" class="btn btn-success">
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <table class="table" id="schedule">
-          <thead class="bg-success text-white">
-            <tr>
-              <th>Train Name</th>
-              <th>Destination</th>
-              <th>Frequency (min)</th>
-              <th>Next Arrival</th>
-              <th>Minutes Away</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
-    </div>
 	</div>
-	<div class="clearfix hidden-md-up"></div>
-	<div class="col col-md-3">
-    <div class="card">
-      <div class="card-header bg-secondary">
-        <h3 class="card-title text-white">Add Train</h3>
-      </div>
-      <div class="card-body bg-light">
-        <form>
-          <div class="form-group">
-            <label for="input-name">Train Name</label>
-            <input type="text" class="form-control" id="input-name">
-          </div>
-          <div class="form-group">
-            <label for="input-destination">Destination</label>
-            <input type="text" class="form-control" id="input-destination">
-          </div>
-          <div class="form-group">
-            <label for="input-1stTrainTime">First Train Time (HH:mm - military time)</label>
-            <input type="text" class="form-control" id="input-1stTrainTime">
-          </div>
-          <div class="form-group">
-            <label for="input-Frequency">Frequency (min)</label>
-            <input type="text" class="form-control" id="input-Frequency">
-          </div>
-          <input id="submit" type="submit" value="Submit" class="btn btn-success">
-        </form>
-      </div>
-      </div>
-    </div>
-
-	</div>
-	</div>
-
   </div>
-
-
   <!--Firebase, Javascript and JQuery tags-->
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
