@@ -25,7 +25,8 @@
 	  <div class="col col-md-8">
         <div class="card">
           <div class="card-header bg-secondary">
-            <h3 class="card-title text-white">Current Train Schedule</h3>
+            <h3 class="card-title text-white d-inline">Current Train Schedule</h3>
+            <input id="refresh" type="button" value="Refresh Page" class="btn-info" onClick="window.location.reload()">
           </div>
           <div class="card-body">
             <table class="table" id="schedule">
@@ -75,10 +76,10 @@
       </div>
 	</div>
   </div>
-  <!--Firebase, Javascript and JQuery tags-->
+  <!--Firebase and JQuery tags-->
   <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Link to Moment.js should go here -->
+  <!-- Link to Moment.js should go here -->
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>

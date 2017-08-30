@@ -61,7 +61,6 @@ trainsRef.on("child_added", function(childSnapShot) {
   // Grab Child key
   var childKey = childSnapShot.key;
 
-
   // Create Delete button
   var deleteBtn = $("<button class='delete btn-warning'>").text("Delete").attr("data-index", childKey);
   // Update HTML

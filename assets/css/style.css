@@ -2,6 +2,8 @@
 /*Made by Caveman on https://www.toptal.com/designers/subtlepatterns/pool-table/*/
   background-image:url("../images/pool_table.png");
   color:white;
+  height: 200px;
+  padding: 35px;
 }
 
 .card{
@@ -16,6 +18,7 @@ body{
   background-image:url("http://media-cdn.timesfreepress.com/img/photos/2014/05/03/0504_WEB_a_Light_Rail_t800_hd4cd3bddf2987db2352daa78d1a044c9627d3951.JPG");
   font-family: 'Arimo', sans-serif;
   margin-bottom: 25px;
+  padding: 25px;
 }
 
 p{
@@ -34,4 +37,7 @@ input[type=text]:focus{
   background-color:#cef296;
 }
 
+#refresh{
+  float:right;
+}
 
